@@ -17,32 +17,69 @@ class CapabilitiesContext implements Context, SnippetAcceptingContext {
 	 * @param \Behat\Gherkin\Node\TableNode|null $formData
 	 */
 	public function checkCapabilitiesResponse(\Behat\Gherkin\Node\TableNode $formData) {
-		$capabilitiesXML = $this->response->xml()->data->capabilities;
+		$capabilitiesXML = $this->getCapabilitiesXml();
 
 		foreach ($formData->getHash() as $row) {
-			$path_to_element = explode('@@@', $row['path_to_element']);
-			$answeredValue = $capabilitiesXML->{$row['capability']};
-			for ($i = 0; $i < count($path_to_element); $i++) {
-				$answeredValue = $answeredValue->{$path_to_element[$i]};
-			}
-			$answeredValue = (string)$answeredValue;
 			PHPUnit_Framework_Assert::assertEquals(
 				$row['value'] === "EMPTY" ? '' : $row['value'],
-				$answeredValue,
+				$this->getParameterValueFromXml(
+					$capabilitiesXML,
+					$row['capability'],
+					$row['path_to_element']
+				),
 				"Failed field " . $row['capability'] . " " . $row['path_to_element']
 			);
 
 		}
 	}
 
-	protected function resetAppConfigs() {
-		$this->resetCommonSharingAppConfigs();
+	protected function setupAppConfigs() {
+		// Remember the current capabilities
+		$this->getCapabilitiesCheckResponse();
+		$this->savedCapabilitiesXml = $this->getCapabilitiesXml();
+		// Set the required starting values for testing
+		$this->setupCommonSharingConfigs();
+		$this->setupCommonFederationConfigs();
 		$this->modifyServerConfig('core', 'shareapi_allow_resharing', 'yes');
-		$this->modifyServerConfig('files_sharing', 'outgoing_server2server_share_enabled', 'yes');
-		$this->modifyServerConfig('files_sharing', 'incoming_server2server_share_enabled', 'yes');
 		$this->modifyServerConfig('core', 'shareapi_enforce_links_password', 'no');
 		$this->modifyServerConfig('core', 'shareapi_allow_public_notification', 'no');
 		$this->modifyServerConfig('core', 'shareapi_default_expire_date', 'no');
 		$this->modifyServerConfig('core', 'shareapi_enforce_expire_date', 'no');
+	}
+
+	protected function restoreAppConfigs() {
+		// Restore the previous capabilities settings
+		$this->restoreCommonSharingConfigs();
+		$this->restoreCommonFederationConfigs();
+		$this->resetCapability(
+			'files_sharing',
+			'resharing',
+			'core',
+			'shareapi_allow_resharing'
+		);
+		$this->resetCapability(
+			'files_sharing',
+			'public@@@password@@@enforced',
+			'core',
+			'shareapi_enforce_links_password'
+		);
+		$this->resetCapability(
+			'files_sharing',
+			'public@@@send_mail',
+			'core',
+			'shareapi_allow_public_notification'
+		);
+		$this->resetCapability(
+			'files_sharing',
+			'public@@@expire_date@@@enabled',
+			'core',
+			'shareapi_default_expire_date'
+		);
+		$this->resetCapability(
+			'files_sharing',
+			'public@@@expire_date@@@enforced',
+			'core',
+			'shareapi_enforce_expire_date'
+		);
 	}
 }

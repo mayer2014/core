@@ -13,7 +13,12 @@ require_once 'bootstrap.php';
 class FeatureContext implements Context, SnippetAcceptingContext {
 	use BasicStructure;
 
-	protected function resetAppConfigs() {
-		$this->resetCommonSharingAppConfigs();
+	protected function setupAppConfigs() {
+		$this->setupCommonSharingConfigs();
+	}
+
+	protected function restoreAppConfigs() {
+		// Restore the previous capabilities settings
+		$this->restoreCommonSharingConfigs();
 	}
 }
