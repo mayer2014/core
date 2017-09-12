@@ -52,6 +52,10 @@ class FederationContext implements Context, SnippetAcceptingContext {
 	}
 
 	protected function setupAppConfigs() {
+		// Remember the current capabilities
+		$this->getCapabilitiesCheckResponse();
+		$this->savedCapabilitiesXml = $this->getCapabilitiesXml();
+		// Set the required starting values for testing
 		$this->setupCommonFederationConfigs();
 	}
 

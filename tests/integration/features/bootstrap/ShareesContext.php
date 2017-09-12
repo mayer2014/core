@@ -78,7 +78,8 @@ class ShareesContext implements Context, SnippetAcceptingContext {
 		// Restore the previous capabilities settings
 		$this->restoreCommonSharingConfigs();
 		$this->restoreCommonFederationConfigs();
-		//TODO the following 2 config values do not seem to be exposed in the capabilities
+		// These settings are not yet exposed in the capabilities
+		// So just make sure they are set as follows on exit
 		$this->modifyServerConfig('core', 'shareapi_allow_share_dialog_user_enumeration', 'yes');
 		$this->modifyServerConfig('core', 'shareapi_share_dialog_user_enumeration_group_members', 'no');
 	}

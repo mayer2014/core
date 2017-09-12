@@ -14,6 +14,10 @@ class FeatureContext implements Context, SnippetAcceptingContext {
 	use BasicStructure;
 
 	protected function setupAppConfigs() {
+		// Remember the current capabilities
+		$this->getCapabilitiesCheckResponse();
+		$this->savedCapabilitiesXml = $this->getCapabilitiesXml();
+		// Set the required starting values for testing
 		$this->setupCommonSharingConfigs();
 	}
 

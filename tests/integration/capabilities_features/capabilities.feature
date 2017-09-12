@@ -21,8 +21,7 @@ Feature: capabilities
 
 	Scenario: getting capabilities with admin user
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -40,8 +39,7 @@ Feature: capabilities
 	Scenario: Changing public upload
 		Given parameter "shareapi_allow_public_upload" of app "core" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -59,8 +57,7 @@ Feature: capabilities
 	Scenario: Disabling share api
 		Given parameter "shareapi_enabled" of app "core" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -77,8 +74,7 @@ Feature: capabilities
 	Scenario: Disabling public links
 		Given parameter "shareapi_allow_links" of app "core" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -96,8 +92,7 @@ Feature: capabilities
 	Scenario: Changing resharing
 		Given parameter "shareapi_allow_resharing" of app "core" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -115,8 +110,7 @@ Feature: capabilities
 	Scenario: Changing federation outgoing
 		Given parameter "outgoing_server2server_share_enabled" of app "files_sharing" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -134,8 +128,7 @@ Feature: capabilities
 	Scenario: Changing federation incoming
 		Given parameter "incoming_server2server_share_enabled" of app "files_sharing" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -153,8 +146,7 @@ Feature: capabilities
 	Scenario: Changing password enforce
 		Given parameter "shareapi_enforce_links_password" of app "core" is set to "yes"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -173,8 +165,7 @@ Feature: capabilities
 	Scenario: Changing public notifications
 		Given parameter "shareapi_allow_public_notification" of app "core" is set to "yes"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -193,8 +184,7 @@ Feature: capabilities
 	Scenario: Changing expire date
 		Given parameter "shareapi_default_expire_date" of app "core" is set to "yes"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -214,8 +204,7 @@ Feature: capabilities
 		Given parameter "shareapi_default_expire_date" of app "core" is set to "yes"
 		And parameter "shareapi_enforce_expire_date" of app "core" is set to "yes"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |
@@ -235,8 +224,7 @@ Feature: capabilities
 	Scenario: Changing group sharing allowed
 		Given parameter "shareapi_allow_group_sharing" of app "core" is set to "no"
 		When the capabilities are retrieved
-		Then the HTTP status code should be "200"
-		And fields of capabilities match with
+		Then fields of capabilities match with
 			| capability | path_to_element | value |
 			| core | pollinterval | 60 |
 			| core | webdav-root | remote.php/webdav |

@@ -72,23 +72,16 @@ trait AppConfiguration {
 	}
 
 	/**
+	 * @When the capabilities are retrieved
 	 * @return void
 	 */
 	public function getCapabilitiesCheckResponse() {
-		$this->getCapabilities();
+		$this->sendingTo('GET', '/cloud/capabilities');
 
 		PHPUnit_Framework_Assert::assertEquals(
 			200,
 			$this->response->getStatusCode()
 		);
-	}
-
-	/**
-	 * @When the capabilities are retrieved
-	 * @return void
-	 */
-	public function getCapabilities() {
-		$this->sendingTo('GET', '/cloud/capabilities');
 	}
 
 	/**

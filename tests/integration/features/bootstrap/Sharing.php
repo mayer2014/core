@@ -687,6 +687,7 @@ trait Sharing {
 			'shareapi_allow_group_sharing'
 		);
 		// This setting is not yet exposed in the capabilities.
+		// So just make sure it is set as follows on exit
 		$this->modifyServerConfig('core', 'shareapi_only_share_with_group_members', 'no');
 	}
 
