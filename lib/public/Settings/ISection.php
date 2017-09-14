@@ -48,9 +48,15 @@ interface ISection {
 	public function getPriority();
 
 	/**
-	 * @since 10.0
-	 * @return string
+	 * @deprecated since 10.0.4
+	 * @return int
 	 */
 	public function getIconName();
+
+	/**
+	 * @since 10.0.4
+	 * @return string
+	 */
+	public function getIconUrl();
 
 }
