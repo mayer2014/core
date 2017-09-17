@@ -161,10 +161,16 @@ class FilesPageBasic extends OwnCloudPage {
 		}
 
 		// We might have scrolled past the element, so bring it into view
-		$this->scrollIntoView(
-			'#' . $this->appContentId,
+		$fileRowElementCoordinates = $this->getCoordinatesOfElement(
+			$session, $fileRowElement
+		);
+
+		$currentOffest = $this->getOffsetBySelector(
+			'#filestable',
 			$session
 		);
+
+		$this->scrollToPosition('#' . $this->appContentId, $fileRowElementCoordinates['top'] - $currentOffest, $session);
 
 		$fileRow = $this->getPage('FilesPageElement\\FileRow');
 		$fileRow->setElement($fileRowElement);
